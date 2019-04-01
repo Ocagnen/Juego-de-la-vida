@@ -10,14 +10,15 @@ package juegovidajavieroi;
  * @author javier
  */
 public class Tablero {
-    
-    private boolean[][] tablero;
 
-    public Tablero(int n) {        
-        
-        this.tablero = new boolean[n][n];
+    private boolean[][] tablero;
+    private int numeroCelulas;
+
+    public Tablero(int dimensiones, int numeroCel) {
+        this.tablero = new boolean[dimensiones][dimensiones];
+        this.numeroCelulas = numeroCel;
     }
-    
+
     public boolean[][] getTablero() {
         return tablero;
     }
@@ -25,15 +26,22 @@ public class Tablero {
     public void setTablero(boolean[][] tablero) {
         this.tablero = tablero;
     }
-    
-    public void mostrarTablero(){
-        
+
+    public void mostrarTablero() {
+
+    }
+
+    public void asignarCelManual() {
+
+    }
+
+    public void asignarCelAlt() {
+
     }
 
     @Override
     public String toString() {
-        return "Tablero" + "tablero=" + tablero ;
+        return "Tablero" + "tablero=" + tablero;
     }
-    
-    
+
 }
