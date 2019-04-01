@@ -12,9 +12,9 @@ package juegovidajavieroi;
 public class Tablero {
 
     private boolean[][] tablero;
-    private int numeroCelulas;
+    private double numeroCelulas;
 
-    public Tablero(int dimensiones, int numeroCel) {
+    public Tablero(int dimensiones, double numeroCel) {
         this.tablero = new boolean[dimensiones][dimensiones];
         this.numeroCelulas = numeroCel;
     }
@@ -26,6 +26,14 @@ public class Tablero {
     public void setTablero(boolean[][] tablero) {
         this.tablero = tablero;
     }
+
+    public double getNumeroCelulas() {
+        return numeroCelulas;
+    }
+
+    public void setNumeroCelulas(double numeroCelulas) {
+        this.numeroCelulas = numeroCelulas;
+    }   
 
     public void mostrarTablero() {
 
@@ -41,7 +49,9 @@ public class Tablero {
 
     @Override
     public String toString() {
-        return "Tablero" + "tablero=" + tablero;
+        return "Tablero " + "\ttablero=" + tablero + ", numeroCelulas=" + numeroCelulas;
     }
+
+    
 
 }
