@@ -11,4 +11,7 @@ package juegovidajavieroi;
  */
 public class Partida {
     
+    private Tablero tabl;
+    
+    
 }

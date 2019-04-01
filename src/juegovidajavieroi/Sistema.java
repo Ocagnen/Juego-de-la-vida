@@ -5,10 +5,14 @@
  */
 package juegovidajavieroi;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author javier
  */
 public class Sistema {
+    
+    private ArrayList<Partida> partidas;
     
 }
