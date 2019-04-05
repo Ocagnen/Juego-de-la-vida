@@ -6,6 +6,7 @@
 package juegovidajavieroi;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -42,6 +43,33 @@ public class Tablero {
     }
 
     public void asignarCelManual() {
+        Scanner tec = new Scanner(System.in);
+        int fila;
+        int columna;
+        int numCel = calcularCelAlt();
+        int veces = 0;
+
+        do {
+            do {
+                System.out.println("Introduce la fila donde insertar la célula: ");
+                fila = tec.nextInt() - 1;
+                while (fila > this.tablero.length || fila < this.tablero.length) {
+                    System.out.println("La fila introducida no existe");
+                    System.out.println("Introduce la fila donde insertar la célula: ");
+                    fila = tec.nextInt() - 1;
+                }
+
+                System.out.println("Introduce la columna donde insertar la célula");
+                columna = tec.nextInt() - 1;
+                while (fila > this.tablero.length || fila < this.tablero.length) {
+                    System.out.println("La columna introducida no existe");
+                    System.out.println("Introduce la columna donde insertar la célula: ");
+                    fila = tec.nextInt() - 1;
+                }
+            } while (this.tablero[fila][columna]);
+            this.tablero[fila][columna] = true;
+            veces++;
+        } while (veces != numCel);
 
     }
 
@@ -51,7 +79,7 @@ public class Tablero {
         int fila;
         int columna;
         int numCel = calcularCelAlt();
-        int veces= 0;
+        int veces = 0;
 
         do {
             do {
@@ -64,10 +92,10 @@ public class Tablero {
         } while (veces != numCel);
 
     }
-    
-    private int calcularCelAlt(){        
-        return (int) ((int)(this.tablero.length^2)*(0.01*this.porcentajeCel));
-        
+
+    private int calcularCelAlt() {
+        return (int) ((int) (this.tablero.length ^ 2) * (0.01 * this.porcentajeCel));
+
     }
 
     @Override
