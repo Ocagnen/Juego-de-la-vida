@@ -61,6 +61,11 @@ public class Tablero {
         } while ();
 
     }
+    
+    private int calcualrCelAlt(){        
+        return (int) ((int)(this.tablero.length^2)*(0.01*this.porcentajeCel));
+        
+    }
 
     @Override
     public String toString() {
