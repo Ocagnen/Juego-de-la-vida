@@ -45,5 +45,20 @@ public class Vista {
         
         return respuesta;
     }
-   
+    
+    public static int elegirPorcentajeCel(){
+        System.out.println("Introduce el porcentaje de células para la "
+                + "generación 1");
+        System.out.println("El porcentaje se debe introducir en forma de "
+                + "número entero entre 100 y 0 (ej: 20, 14, 67,...)");
+       int respuesta = tec.nextInt();
+       while(respuesta>100 || respuesta <0){
+            System.out.println("Tamaño no admitido");
+            System.out.println("Introducir un número entero entre 100 y 0");
+            respuesta = tec.nextInt();
+        }
+       
+       return respuesta;
+    }
+
 }
