@@ -97,6 +97,20 @@ public class Tablero {
         return (int) ((int) (this.tablero.length ^ 2) * (0.01 * this.porcentajeCel));
 
     }
+    
+    public void siguienteGeneracion(){
+        
+        for (int i = 0; i < this.tablero.length; i++) {
+            for (int j = 0; j < this.tablero.length; j++) {
+                
+                
+                
+            }
+                
+            
+        }
+        
+    }
 
     @Override
     public String toString() {
