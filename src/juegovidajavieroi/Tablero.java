@@ -97,19 +97,43 @@ public class Tablero {
         return (int) ((int) (this.tablero.length ^ 2) * (0.01 * this.porcentajeCel));
 
     }
-    
-    public void siguienteGeneracion(){
-        
+
+    public void siguienteGeneracion() {
+
+        int celulasVecinas = 0;
+
         for (int i = 0; i < this.tablero.length; i++) {
             for (int j = 0; j < this.tablero.length; j++) {
-                
-                
-                
+
             }
-                
-            
+
         }
-        
+
+    }
+
+    private int celFilaSup() {
+        int celulasVecinas = 0;
+
+    }
+
+    private int celFilaInf() {
+        int celulasVecinas = 0;
+
+    }
+
+    private int celColIzq() {
+        int celulasVecinas = 0;
+
+    }
+
+    private int celColDer() {
+        int celulasVecinas = 0;
+
+    }
+
+    private int celEstandar() {
+        int celulasVecinas = 0;
+
     }
 
     @Override
