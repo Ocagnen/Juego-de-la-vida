@@ -36,7 +36,14 @@ public class Vista {
     public static int elegirTablero(){
         
         System.out.println("¿Qué dimensiones desea darle al tablero? (N x N)");
+        int respuesta = tec.nextInt();
+        while(respuesta>25 || respuesta <5){
+            System.out.println("Tamaño no admitido");
+            System.out.println("Introducir un número entre 25 y 5");
+            respuesta = tec.nextInt();
+        }
         
+        return respuesta;
     }
-
+   
 }
