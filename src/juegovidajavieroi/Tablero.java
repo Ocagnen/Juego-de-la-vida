@@ -5,6 +5,8 @@
  */
 package juegovidajavieroi;
 
+import java.util.Random;
+
 /**
  *
  * @author javier
@@ -12,11 +14,11 @@ package juegovidajavieroi;
 public class Tablero {
 
     private boolean[][] tablero;
-    private double numeroCelulas;
+    private int porcentajeCel;
 
-    public Tablero(int dimensiones, double numeroCel) {
+    public Tablero(int dimensiones, int numeroCel) {
         this.tablero = new boolean[dimensiones][dimensiones];
-        this.numeroCelulas = numeroCel;
+        this.porcentajeCel = numeroCel;
     }
 
     public boolean[][] getTablero() {
@@ -27,13 +29,13 @@ public class Tablero {
         this.tablero = tablero;
     }
 
-    public double getNumeroCelulas() {
-        return numeroCelulas;
+    public double getPorcentajeCel() {
+        return porcentajeCel;
     }
 
-    public void setNumeroCelulas(double numeroCelulas) {
-        this.numeroCelulas = numeroCelulas;
-    }   
+    public void setPorcentajeCel(int porcentajeCel) {
+        this.porcentajeCel = porcentajeCel;
+    }
 
     public void mostrarTablero() {
 
@@ -45,13 +47,24 @@ public class Tablero {
 
     public void asignarCelAlt() {
 
+        Random alt = new Random();
+        int fila;
+        int columna;      
+
+        do {
+            do {
+                fila = alt.nextInt(this.tablero.length);
+                columna = alt.nextInt(this.tablero.length);
+            } while (this.tablero[fila][columna]);
+            this.tablero[fila][columna] = true;
+
+        } while ();
+
     }
 
     @Override
     public String toString() {
-        return "Tablero " + "\ttablero=" + tablero + ", numeroCelulas=" + numeroCelulas;
+        return "Tablero " + "\ttablero=" + tablero + ", numeroCelulas=" + porcentajeCel;
     }
-
-    
 
 }
