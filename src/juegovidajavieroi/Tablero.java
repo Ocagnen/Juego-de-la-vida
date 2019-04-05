@@ -131,8 +131,28 @@ public class Tablero {
 
     }
 
-    private int celEstandar() {
+    private int celEstandar(int fila, int columna) {
         int celulasVecinas = 0;
+        
+        if(this.tablero[fila-1][columna]){
+            celulasVecinas++;
+        } else if (this.tablero[fila-1][columna-1]){
+            celulasVecinas++;
+        } else if (this.tablero[fila-1][columna+1]){
+            celulasVecinas++;
+        }else if (this.tablero[fila][columna-1]){
+            celulasVecinas++;
+        }else if (this.tablero[fila][columna+1]){
+            celulasVecinas++;
+        }else if (this.tablero[fila+1][columna]){
+            celulasVecinas++;
+        } else if (this.tablero[fila+1][columna-1]){
+            celulasVecinas++;
+        } else if (this.tablero[fila+1][columna+1]){
+            celulasVecinas++;
+        }
+        
+        return celulasVecinas;
 
     }
 
