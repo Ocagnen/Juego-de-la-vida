@@ -49,7 +49,9 @@ public class Tablero {
 
         Random alt = new Random();
         int fila;
-        int columna;      
+        int columna;
+        int numCel = calcularCelAlt();
+        int veces= 0;
 
         do {
             do {
@@ -57,12 +59,13 @@ public class Tablero {
                 columna = alt.nextInt(this.tablero.length);
             } while (this.tablero[fila][columna]);
             this.tablero[fila][columna] = true;
+            veces++;
 
-        } while ();
+        } while (veces != numCel);
 
     }
     
-    private int calcualrCelAlt(){        
+    private int calcularCelAlt(){        
         return (int) ((int)(this.tablero.length^2)*(0.01*this.porcentajeCel));
         
     }
