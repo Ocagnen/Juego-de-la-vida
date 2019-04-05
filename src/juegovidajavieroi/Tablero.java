@@ -126,32 +126,46 @@ public class Tablero {
 
     }
 
-    private int celColDer() {
+    private int celColDer(int fila, int columna) {
         int celulasVecinas = 0;
+
+        if (this.tablero[fila - 1][columna]) {
+            celulasVecinas++;
+        } else if (this.tablero[fila - 1][columna - 1]) {
+            celulasVecinas++;
+        } else if (this.tablero[fila][columna - 1]) {
+            celulasVecinas++;
+        }else if (this.tablero[fila + 1][columna]) {
+            celulasVecinas++;
+        } else if (this.tablero[fila + 1][columna - 1]) {
+            celulasVecinas++;
+        } 
+        
+        return celulasVecinas;
 
     }
 
     private int celEstandar(int fila, int columna) {
         int celulasVecinas = 0;
-        
-        if(this.tablero[fila-1][columna]){
+
+        if (this.tablero[fila - 1][columna]) {
             celulasVecinas++;
-        } else if (this.tablero[fila-1][columna-1]){
+        } else if (this.tablero[fila - 1][columna - 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila-1][columna+1]){
+        } else if (this.tablero[fila - 1][columna + 1]) {
             celulasVecinas++;
-        }else if (this.tablero[fila][columna-1]){
+        } else if (this.tablero[fila][columna - 1]) {
             celulasVecinas++;
-        }else if (this.tablero[fila][columna+1]){
+        } else if (this.tablero[fila][columna + 1]) {
             celulasVecinas++;
-        }else if (this.tablero[fila+1][columna]){
+        } else if (this.tablero[fila + 1][columna]) {
             celulasVecinas++;
-        } else if (this.tablero[fila+1][columna-1]){
+        } else if (this.tablero[fila + 1][columna - 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila+1][columna+1]){
+        } else if (this.tablero[fila + 1][columna + 1]) {
             celulasVecinas++;
         }
-        
+
         return celulasVecinas;
 
     }
