@@ -44,15 +44,15 @@ public class Tablero {
         System.out.println("");
         int veces = 0;
 
-        do{
+        do {
             System.out.println("");
-                for (int i = 0; i < this.tablero.length; i++) {
-                    if (this.tablero[veces][i]) {
-                        System.out.print("|X|\t");
-                    } else {
-                        System.out.print("||\t");
-                    }
+            for (int i = 0; i < this.tablero.length; i++) {
+                if (this.tablero[veces][i]) {
+                    System.out.print("|X|\t");
+                } else {
+                    System.out.print("||\t");
                 }
+            }
 
             System.out.println("");
             veces++;
@@ -122,31 +122,29 @@ public class Tablero {
 
         for (int i = 0; i < this.tablero.length; i++) {
             for (int j = 0; j < this.tablero.length; j++) {
+                System.out.println("");
+                System.out.println("fila "+i+"Columa "+j);
                 celulasVecinas = 0;
-                if (i == 0 && (j != 0 && j != this.tablero.length-1)) {
-                    System.out.println("uno"+i);
-                    System.out.println(j);
+                if (i == 0 && (j != 0 && j != this.tablero.length - 1)) {
                     celulasVecinas = celFilaSup(i, j);
-                } else if (j == 0 && (i != 0 && i != this.tablero.length-1)) {
-                    System.out.println("dos"+i);
-                    System.out.println(j);
+                    System.out.println("primer"+celulasVecinas);
+                } else if (j == 0 && (i != 0 && i != this.tablero.length - 1)) {
                     celulasVecinas = celColIzq(i, j);
-                } else if (i == this.tablero.length-1 && (j != 0 && j != this.tablero.length-1)) {
-                    System.out.println("tres"+i);
-                    System.out.println(j);
+                    System.out.println("segundo"+celulasVecinas);
+                } else if (i == this.tablero.length - 1 && (j != 0 && j != this.tablero.length - 1)) {
                     celulasVecinas = celFilaInf(i, j);
-                } else if (j == this.tablero.length-1 && (i != 0 && i != this.tablero.length-1)) {
-                    System.out.println("cuatro"+i);
-                    System.out.println(j);
+                    System.out.println("tercer"+celulasVecinas);
+                } else if (j == this.tablero.length - 1 && (i != 0 && i != this.tablero.length - 1)) {
                     celulasVecinas = celColDer(i, j);
-                } else if (!((i == 0 && j == 0) || (i == this.tablero.length-1 && j == this.tablero.length-1)
-                        || (i == this.tablero.length-1 && j == 0) || (i == 0 && j == this.tablero.length-1))) {
-                    System.out.println("cinco"+i);
-                    System.out.println(j);
+                    System.out.println("cuarto"+celulasVecinas);
+                } else if (!((i == 0 && j == 0) || (i == this.tablero.length - 1 && j == this.tablero.length - 1)
+                        || (i == this.tablero.length - 1 && j == 0) || (i == 0 && j == this.tablero.length - 1))) {
                     celulasVecinas = celEstandar(i, j);
+                    System.out.println("quinto"+celulasVecinas);
                 }
-
-                determinarEstadoCel(celulasVecinas, this.tablero[i][j]);
+                
+                System.out.println(celulasVecinas);
+                this.tablero[i][j]=determinarEstadoCel(celulasVecinas);
 
             }
 
@@ -154,21 +152,37 @@ public class Tablero {
 
     }
 
-    private int celFilaSup(int fila, int columna) {
+    public int celFilaSup(int fila, int columna) {
         int celulasVecinas = 0;
-
+        System.out.println("LA FILA PASADA ES "+fila);
+        System.out.println("LA COLUMNA PASADA ES"+columna);
+        
+        System.out.println("ES TRUE?:"+this.tablero[fila][columna - 1]);
         if (this.tablero[fila][columna - 1]) {
-            celulasVecinas++;
-        } else if (this.tablero[fila][columna + 1]) {
-            celulasVecinas++;
-        } else if (this.tablero[fila + 1][columna]) {
-            celulasVecinas++;
-        } else if (this.tablero[fila + 1][columna - 1]) {
-            celulasVecinas++;
-        } else if (this.tablero[fila + 1][columna + 1]) {
-            celulasVecinas++;
+            System.out.println("uno"+celulasVecinas);
+            celulasVecinas = celulasVecinas +1;
         }
+        if (this.tablero[fila][columna + 1]) {
+                       // System.out.println("dos"+celulasVecinas);
 
+            celulasVecinas = celulasVecinas +1;
+        }
+        if (this.tablero[fila + 1][columna]) {
+                       // System.out.println("tres"+celulasVecinas);
+
+            celulasVecinas = celulasVecinas +1;
+        }
+        if (this.tablero[fila + 1][columna - 1]) {
+                        //System.out.println("cuatro"+celulasVecinas);
+
+            celulasVecinas = celulasVecinas +1;
+        }
+        if (this.tablero[fila + 1][columna + 1]) {
+                        //System.out.println("cinco"+celulasVecinas);
+
+            celulasVecinas = celulasVecinas +1;
+        }
+        System.out.println("CLUAS TOTALES"+celulasVecinas);
         return celulasVecinas;
     }
 
@@ -177,13 +191,17 @@ public class Tablero {
 
         if (this.tablero[fila - 1][columna]) {
             celulasVecinas++;
-        } else if (this.tablero[fila - 1][columna - 1]) {
+        }
+        if (this.tablero[fila - 1][columna - 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila - 1][columna + 1]) {
+        }
+        if (this.tablero[fila - 1][columna + 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila][columna - 1]) {
+        }
+        if (this.tablero[fila][columna - 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila][columna + 1]) {
+        }
+        if (this.tablero[fila][columna + 1]) {
             celulasVecinas++;
         }
 
@@ -196,13 +214,17 @@ public class Tablero {
 
         if (this.tablero[fila - 1][columna]) {
             celulasVecinas++;
-        } else if (this.tablero[fila - 1][columna + 1]) {
+        }
+        if (this.tablero[fila - 1][columna + 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila][columna + 1]) {
+        }
+        if (this.tablero[fila][columna + 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila + 1][columna]) {
+        }
+        if (this.tablero[fila + 1][columna]) {
             celulasVecinas++;
-        } else if (this.tablero[fila + 1][columna + 1]) {
+        }
+        if (this.tablero[fila + 1][columna + 1]) {
             celulasVecinas++;
         }
 
@@ -215,13 +237,17 @@ public class Tablero {
 
         if (this.tablero[fila - 1][columna]) {
             celulasVecinas++;
-        } else if (this.tablero[fila - 1][columna - 1]) {
+        }
+        if (this.tablero[fila - 1][columna - 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila][columna - 1]) {
+        }
+        if (this.tablero[fila][columna - 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila + 1][columna]) {
+        }
+        if (this.tablero[fila + 1][columna]) {
             celulasVecinas++;
-        } else if (this.tablero[fila + 1][columna - 1]) {
+        }
+        if (this.tablero[fila + 1][columna - 1]) {
             celulasVecinas++;
         }
 
@@ -234,19 +260,26 @@ public class Tablero {
 
         if (this.tablero[fila - 1][columna]) {
             celulasVecinas++;
-        } else if (this.tablero[fila - 1][columna - 1]) {
+        }
+        if (this.tablero[fila - 1][columna - 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila - 1][columna + 1]) {
+        }
+        if (this.tablero[fila - 1][columna + 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila][columna - 1]) {
+        }
+        if (this.tablero[fila][columna - 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila][columna + 1]) {
+        }
+        if (this.tablero[fila][columna + 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila + 1][columna]) {
+        }
+        if (this.tablero[fila + 1][columna]) {
             celulasVecinas++;
-        } else if (this.tablero[fila + 1][columna - 1]) {
+        }
+        if (this.tablero[fila + 1][columna - 1]) {
             celulasVecinas++;
-        } else if (this.tablero[fila + 1][columna + 1]) {
+        }
+        if (this.tablero[fila + 1][columna + 1]) {
             celulasVecinas++;
         }
 
@@ -254,8 +287,9 @@ public class Tablero {
 
     }
 
-    private void determinarEstadoCel(int celulasCerca, boolean celula) {
-
+    private boolean determinarEstadoCel(int celulasCerca) {
+        boolean celula = false;
+        
         switch (celulasCerca) {
             case 0:
             case 1:
@@ -270,6 +304,7 @@ public class Tablero {
                 celula = false;
         }
 
+        return celula;
     }
 
     @Override
