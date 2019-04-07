@@ -19,6 +19,13 @@ public class Tablero {
 
     public Tablero(int dimensiones, int numeroCel) {
         this.tablero = new Celula[dimensiones][dimensiones];
+
+        for (int i = 0; i < dimensiones; i++) {
+            for (int j = 0; j < dimensiones; j++) {
+                this.tablero[i][j] = new Celula();
+            }
+        }
+
         this.porcentajeCel = numeroCel;
     }
 
@@ -29,8 +36,7 @@ public class Tablero {
     public void setTablero(Celula[][] tablero) {
         this.tablero = tablero;
     }
-    
-    
+
     public double getPorcentajeCel() {
         return porcentajeCel;
     }
@@ -123,55 +129,49 @@ public class Tablero {
 
         for (int i = 0; i < this.tablero.length; i++) {
             for (int j = 0; j < this.tablero.length; j++) {
-                System.out.println("");
-                System.out.println("fila "+i+"Columa "+j);
                 celulasVecinas = 0;
                 if (i == 0 && (j != 0 && j != this.tablero.length - 1)) {
                     celulasVecinas = celFilaSup(i, j);
-                    System.out.println("primer"+celulasVecinas);
                 } else if (j == 0 && (i != 0 && i != this.tablero.length - 1)) {
                     celulasVecinas = celColIzq(i, j);
-                    System.out.println("segundo"+celulasVecinas);
                 } else if (i == this.tablero.length - 1 && (j != 0 && j != this.tablero.length - 1)) {
                     celulasVecinas = celFilaInf(i, j);
-                    System.out.println("tercer"+celulasVecinas);
                 } else if (j == this.tablero.length - 1 && (i != 0 && i != this.tablero.length - 1)) {
                     celulasVecinas = celColDer(i, j);
-                    System.out.println("cuarto"+celulasVecinas);
                 } else if (!((i == 0 && j == 0) || (i == this.tablero.length - 1 && j == this.tablero.length - 1)
                         || (i == this.tablero.length - 1 && j == 0) || (i == 0 && j == this.tablero.length - 1))) {
                     celulasVecinas = celEstandar(i, j);
-                    System.out.println("quinto"+celulasVecinas);
                 }
-                
-                System.out.println(celulasVecinas);
+
                 this.tablero[i][j].setCelulasAdy(celulasVecinas);
 
             }
 
         }
 
+        matarRevivirCel();
+
     }
 
-    public int celFilaSup(int fila, int columna) {
-        int celulasVecinas = 0;       
-        
-        if (this.tablero[fila][columna - 1].isEstado()) {            
-            celulasVecinas = celulasVecinas +1;
+    private int celFilaSup(int fila, int columna) {
+        int celulasVecinas = 0;
+
+        if (this.tablero[fila][columna - 1].isEstado()) {
+            celulasVecinas = celulasVecinas + 1;
         }
         if (this.tablero[fila][columna + 1].isEstado()) {
-            celulasVecinas = celulasVecinas +1;
+            celulasVecinas = celulasVecinas + 1;
         }
-        if (this.tablero[fila + 1][columna].isEstado()) {             
-            celulasVecinas = celulasVecinas +1;
+        if (this.tablero[fila + 1][columna].isEstado()) {
+            celulasVecinas = celulasVecinas + 1;
         }
         if (this.tablero[fila + 1][columna - 1].isEstado()) {
-            celulasVecinas = celulasVecinas +1;
+            celulasVecinas = celulasVecinas + 1;
         }
         if (this.tablero[fila + 1][columna + 1].isEstado()) {
-            celulasVecinas = celulasVecinas +1;
+            celulasVecinas = celulasVecinas + 1;
         }
-        
+
         return celulasVecinas;
     }
 
@@ -276,15 +276,16 @@ public class Tablero {
 
     }
 
-    private boolean determinarEstadoCel(int celulasCerca) {
+    private boolean determinarEstadoCel(int celulasCerca, Celula cel) {
         boolean celula = false;
-        
+
         switch (celulasCerca) {
             case 0:
             case 1:
                 celula = false;
                 break;
             case 2:
+                celula = cel.isEstado();
                 break;
             case 3:
                 celula = true;
@@ -296,11 +297,21 @@ public class Tablero {
         return celula;
     }
 
+    private void matarRevivirCel() {
+        for (int i = 0; i < this.tablero.length; i++) {
+            for (int j = 0; j < this.tablero.length; j++) {
+
+                this.tablero[i][j].setEstado(determinarEstadoCel(this.tablero[i][j].getCelulasAdy(),
+                        this.tablero[i][j]));
+
+            }
+
+        }
+    }
+
     @Override
     public String toString() {
         return "Tablero{" + "tablero=" + tablero + ", porcentajeCel=" + porcentajeCel + '}';
     }
-
-    
 
 }
