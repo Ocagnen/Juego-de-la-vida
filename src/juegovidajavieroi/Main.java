@@ -17,15 +17,12 @@ public class Main {
 
         tab.asignarCelAlt();
 
-        tab.mostrarTablero();
-        
-        for (int i = 1; i < tab.getTablero().length-1; i++) {
-            System.out.println("COLUMNA ES "+i);
-            
-            tab.celFilaSup(0, i);
-        }
+        tab.mostrarTablero();       
         
         tab.siguienteGeneracion();
+        
+        tab.mostrarTablero();
+        
 
     }
 
