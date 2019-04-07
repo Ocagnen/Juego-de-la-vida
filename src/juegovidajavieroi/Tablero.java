@@ -105,7 +105,21 @@ public class Tablero {
         for (int i = 0; i < this.tablero.length; i++) {
             for (int j = 0; j < this.tablero.length; j++) {
 
-            }
+                if(i==0 && (j!=0 || j!= this.tablero.length)){
+                    celulasVecinas = celFilaSup(i,j);                    
+                } else if (j==0 && (i!=0 || i!=this.tablero.length)){
+                    celulasVecinas = celColIzq(i,j);
+                } else if (i == this.tablero.length && (j!=0 || j!=this.tablero.length)){
+                    celulasVecinas = celFilaInf(i,j);
+                } else if (j == this.tablero.length && (i!=0 || i!= this.tablero.length)){
+                    celulasVecinas = celColDer(i,j);
+                } else if (!((i==0 && j==0) || (i==this.tablero.length && j==this.tablero.length)
+                        || (i==this.tablero.length && j==0) || (i==0 && j==this.tablero.length))){
+                    celulasVecinas = celEstandar(i,j);
+                }
+                
+            }     
+            
 
         }
 
