@@ -14,22 +14,23 @@ import java.util.Scanner;
  */
 public class Tablero {
 
-    private boolean[][] tablero;
+    private Celula[][] tablero;
     private int porcentajeCel;
 
     public Tablero(int dimensiones, int numeroCel) {
-        this.tablero = new boolean[dimensiones][dimensiones];
+        this.tablero = new Celula[dimensiones][dimensiones];
         this.porcentajeCel = numeroCel;
     }
 
-    public boolean[][] getTablero() {
+    public Celula[][] getTablero() {
         return tablero;
     }
 
-    public void setTablero(boolean[][] tablero) {
+    public void setTablero(Celula[][] tablero) {
         this.tablero = tablero;
     }
-
+    
+    
     public double getPorcentajeCel() {
         return porcentajeCel;
     }
@@ -47,7 +48,7 @@ public class Tablero {
         do {
             System.out.println("");
             for (int i = 0; i < this.tablero.length; i++) {
-                if (this.tablero[veces][i]) {
+                if (this.tablero[veces][i].isEstado()) {
                     System.out.print("|X|\t");
                 } else {
                     System.out.print("||\t");
@@ -84,8 +85,8 @@ public class Tablero {
                     System.out.println("Introduce la columna donde insertar la célula: ");
                     fila = tec.nextInt() - 1;
                 }
-            } while (this.tablero[fila][columna]);
-            this.tablero[fila][columna] = true;
+            } while (this.tablero[fila][columna].isEstado());
+            this.tablero[fila][columna].setEstado(true);
             veces++;
         } while (veces != numCel);
 
@@ -103,8 +104,8 @@ public class Tablero {
             do {
                 fila = alt.nextInt(this.tablero.length);
                 columna = alt.nextInt(this.tablero.length);
-            } while (this.tablero[fila][columna]);
-            this.tablero[fila][columna] = true;
+            } while (this.tablero[fila][columna].isEstado());
+            this.tablero[fila][columna].setEstado(true);
             veces++;
 
         } while (veces != numCel);
@@ -144,7 +145,7 @@ public class Tablero {
                 }
                 
                 System.out.println(celulasVecinas);
-                this.tablero[i][j]=determinarEstadoCel(celulasVecinas);
+                this.tablero[i][j].setCelulasAdy(celulasVecinas);
 
             }
 
@@ -153,55 +154,43 @@ public class Tablero {
     }
 
     public int celFilaSup(int fila, int columna) {
-        int celulasVecinas = 0;
-        System.out.println("LA FILA PASADA ES "+fila);
-        System.out.println("LA COLUMNA PASADA ES"+columna);
+        int celulasVecinas = 0;       
         
-        System.out.println("ES TRUE?:"+this.tablero[fila][columna - 1]);
-        if (this.tablero[fila][columna - 1]) {
-            System.out.println("uno"+celulasVecinas);
+        if (this.tablero[fila][columna - 1].isEstado()) {            
             celulasVecinas = celulasVecinas +1;
         }
-        if (this.tablero[fila][columna + 1]) {
-                       // System.out.println("dos"+celulasVecinas);
-
+        if (this.tablero[fila][columna + 1].isEstado()) {
             celulasVecinas = celulasVecinas +1;
         }
-        if (this.tablero[fila + 1][columna]) {
-                       // System.out.println("tres"+celulasVecinas);
-
+        if (this.tablero[fila + 1][columna].isEstado()) {             
             celulasVecinas = celulasVecinas +1;
         }
-        if (this.tablero[fila + 1][columna - 1]) {
-                        //System.out.println("cuatro"+celulasVecinas);
-
+        if (this.tablero[fila + 1][columna - 1].isEstado()) {
             celulasVecinas = celulasVecinas +1;
         }
-        if (this.tablero[fila + 1][columna + 1]) {
-                        //System.out.println("cinco"+celulasVecinas);
-
+        if (this.tablero[fila + 1][columna + 1].isEstado()) {
             celulasVecinas = celulasVecinas +1;
         }
-        System.out.println("CLUAS TOTALES"+celulasVecinas);
+        
         return celulasVecinas;
     }
 
     private int celFilaInf(int fila, int columna) {
         int celulasVecinas = 0;
 
-        if (this.tablero[fila - 1][columna]) {
+        if (this.tablero[fila - 1][columna].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila - 1][columna - 1]) {
+        if (this.tablero[fila - 1][columna - 1].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila - 1][columna + 1]) {
+        if (this.tablero[fila - 1][columna + 1].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila][columna - 1]) {
+        if (this.tablero[fila][columna - 1].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila][columna + 1]) {
+        if (this.tablero[fila][columna + 1].isEstado()) {
             celulasVecinas++;
         }
 
@@ -212,19 +201,19 @@ public class Tablero {
     private int celColIzq(int fila, int columna) {
         int celulasVecinas = 0;
 
-        if (this.tablero[fila - 1][columna]) {
+        if (this.tablero[fila - 1][columna].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila - 1][columna + 1]) {
+        if (this.tablero[fila - 1][columna + 1].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila][columna + 1]) {
+        if (this.tablero[fila][columna + 1].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila + 1][columna]) {
+        if (this.tablero[fila + 1][columna].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila + 1][columna + 1]) {
+        if (this.tablero[fila + 1][columna + 1].isEstado()) {
             celulasVecinas++;
         }
 
@@ -235,19 +224,19 @@ public class Tablero {
     private int celColDer(int fila, int columna) {
         int celulasVecinas = 0;
 
-        if (this.tablero[fila - 1][columna]) {
+        if (this.tablero[fila - 1][columna].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila - 1][columna - 1]) {
+        if (this.tablero[fila - 1][columna - 1].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila][columna - 1]) {
+        if (this.tablero[fila][columna - 1].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila + 1][columna]) {
+        if (this.tablero[fila + 1][columna].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila + 1][columna - 1]) {
+        if (this.tablero[fila + 1][columna - 1].isEstado()) {
             celulasVecinas++;
         }
 
@@ -258,28 +247,28 @@ public class Tablero {
     private int celEstandar(int fila, int columna) {
         int celulasVecinas = 0;
 
-        if (this.tablero[fila - 1][columna]) {
+        if (this.tablero[fila - 1][columna].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila - 1][columna - 1]) {
+        if (this.tablero[fila - 1][columna - 1].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila - 1][columna + 1]) {
+        if (this.tablero[fila - 1][columna + 1].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila][columna - 1]) {
+        if (this.tablero[fila][columna - 1].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila][columna + 1]) {
+        if (this.tablero[fila][columna + 1].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila + 1][columna]) {
+        if (this.tablero[fila + 1][columna].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila + 1][columna - 1]) {
+        if (this.tablero[fila + 1][columna - 1].isEstado()) {
             celulasVecinas++;
         }
-        if (this.tablero[fila + 1][columna + 1]) {
+        if (this.tablero[fila + 1][columna + 1].isEstado()) {
             celulasVecinas++;
         }
 
@@ -309,7 +298,9 @@ public class Tablero {
 
     @Override
     public String toString() {
-        return "Tablero " + "\ttablero=" + tablero + ", numeroCelulas=" + porcentajeCel;
+        return "Tablero{" + "tablero=" + tablero + ", porcentajeCel=" + porcentajeCel + '}';
     }
+
+    
 
 }
