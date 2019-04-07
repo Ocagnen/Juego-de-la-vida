@@ -100,26 +100,27 @@ public class Tablero {
 
     public void siguienteGeneracion() {
 
-        int celulasVecinas = 0;
+        int celulasVecinas;
 
         for (int i = 0; i < this.tablero.length; i++) {
             for (int j = 0; j < this.tablero.length; j++) {
-
-                if(i==0 && (j!=0 || j!= this.tablero.length)){
-                    celulasVecinas = celFilaSup(i,j);                    
-                } else if (j==0 && (i!=0 || i!=this.tablero.length)){
-                    celulasVecinas = celColIzq(i,j);
-                } else if (i == this.tablero.length && (j!=0 || j!=this.tablero.length)){
-                    celulasVecinas = celFilaInf(i,j);
-                } else if (j == this.tablero.length && (i!=0 || i!= this.tablero.length)){
-                    celulasVecinas = celColDer(i,j);
-                } else if (!((i==0 && j==0) || (i==this.tablero.length && j==this.tablero.length)
-                        || (i==this.tablero.length && j==0) || (i==0 && j==this.tablero.length))){
-                    celulasVecinas = celEstandar(i,j);
+                celulasVecinas = 0;
+                if (i == 0 && (j != 0 || j != this.tablero.length)) {
+                    celulasVecinas = celFilaSup(i, j);
+                } else if (j == 0 && (i != 0 || i != this.tablero.length)) {
+                    celulasVecinas = celColIzq(i, j);
+                } else if (i == this.tablero.length && (j != 0 || j != this.tablero.length)) {
+                    celulasVecinas = celFilaInf(i, j);
+                } else if (j == this.tablero.length && (i != 0 || i != this.tablero.length)) {
+                    celulasVecinas = celColDer(i, j);
+                } else if (!((i == 0 && j == 0) || (i == this.tablero.length && j == this.tablero.length)
+                        || (i == this.tablero.length && j == 0) || (i == 0 && j == this.tablero.length))) {
+                    celulasVecinas = celEstandar(i, j);
                 }
-                
-            }     
-            
+
+                determinarEstadoCel(celulasVecinas, this.tablero[i][j]);
+
+            }
 
         }
 
@@ -224,10 +225,10 @@ public class Tablero {
         return celulasVecinas;
 
     }
-    
-    private void determinarEstadoCel(int celulasCerca, boolean celula){       
-        
-        switch (celulasCerca){
+
+    private void determinarEstadoCel(int celulasCerca, boolean celula) {
+
+        switch (celulasCerca) {
             case 0:
             case 1:
                 celula = false;
@@ -240,7 +241,7 @@ public class Tablero {
             default:
                 celula = false;
         }
-        
+
     }
 
     @Override
