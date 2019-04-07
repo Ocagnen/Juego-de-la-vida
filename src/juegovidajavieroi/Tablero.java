@@ -45,16 +45,12 @@ public class Tablero {
         int veces = 0;
 
         do{
-            for (int j = 0; j < this.tablero.length; j++) {
-                System.out.print(" - ");
-
-            }
-                System.out.println("");
+            System.out.println("");
                 for (int i = 0; i < this.tablero.length; i++) {
                     if (this.tablero[veces][i]) {
-                        System.out.print("|X|");
+                        System.out.print("|X|\t");
                     } else {
-                        System.out.print("| |");
+                        System.out.print("||\t");
                     }
                 }
 
@@ -115,7 +111,7 @@ public class Tablero {
 
     }
 
-    public int calcularCelAlt() {
+    private int calcularCelAlt() {
         return (int) ((int) (this.tablero.length * this.tablero.length) * (0.01 * this.porcentajeCel));
 
     }
@@ -127,16 +123,26 @@ public class Tablero {
         for (int i = 0; i < this.tablero.length; i++) {
             for (int j = 0; j < this.tablero.length; j++) {
                 celulasVecinas = 0;
-                if (i == 0 && (j != 0 || j != this.tablero.length)) {
+                if (i == 0 && (j != 0 && j != this.tablero.length-1)) {
+                    System.out.println("uno"+i);
+                    System.out.println(j);
                     celulasVecinas = celFilaSup(i, j);
-                } else if (j == 0 && (i != 0 || i != this.tablero.length)) {
+                } else if (j == 0 && (i != 0 && i != this.tablero.length-1)) {
+                    System.out.println("dos"+i);
+                    System.out.println(j);
                     celulasVecinas = celColIzq(i, j);
-                } else if (i == this.tablero.length && (j != 0 || j != this.tablero.length)) {
+                } else if (i == this.tablero.length-1 && (j != 0 && j != this.tablero.length-1)) {
+                    System.out.println("tres"+i);
+                    System.out.println(j);
                     celulasVecinas = celFilaInf(i, j);
-                } else if (j == this.tablero.length && (i != 0 || i != this.tablero.length)) {
+                } else if (j == this.tablero.length-1 && (i != 0 && i != this.tablero.length-1)) {
+                    System.out.println("cuatro"+i);
+                    System.out.println(j);
                     celulasVecinas = celColDer(i, j);
-                } else if (!((i == 0 && j == 0) || (i == this.tablero.length && j == this.tablero.length)
-                        || (i == this.tablero.length && j == 0) || (i == 0 && j == this.tablero.length))) {
+                } else if (!((i == 0 && j == 0) || (i == this.tablero.length-1 && j == this.tablero.length-1)
+                        || (i == this.tablero.length-1 && j == 0) || (i == 0 && j == this.tablero.length-1))) {
+                    System.out.println("cinco"+i);
+                    System.out.println(j);
                     celulasVecinas = celEstandar(i, j);
                 }
 
