@@ -224,6 +224,24 @@ public class Tablero {
         return celulasVecinas;
 
     }
+    
+    private void determinarEstadoCel(int celulasCerca, boolean celula){       
+        
+        switch (celulasCerca){
+            case 0:
+            case 1:
+                celula = false;
+                break;
+            case 2:
+                break;
+            case 3:
+                celula = true;
+                break;
+            default:
+                celula = false;
+        }
+        
+    }
 
     @Override
     public String toString() {
