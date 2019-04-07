@@ -40,6 +40,28 @@ public class Tablero {
 
     public void mostrarTablero() {
 
+        System.out.println("-------------------------------------------");
+        System.out.println("");
+        int veces = 0;
+
+        do{
+            for (int j = 0; j < this.tablero.length; j++) {
+                System.out.print(" - ");
+
+            }
+                System.out.println("");
+                for (int i = 0; i < this.tablero.length; i++) {
+                    if (this.tablero[veces][i]) {
+                        System.out.print("|X|");
+                    } else {
+                        System.out.print("| |");
+                    }
+                }
+
+            System.out.println("");
+            veces++;
+        } while (veces != this.tablero.length);
+
     }
 
     public void asignarCelManual() {
@@ -93,8 +115,8 @@ public class Tablero {
 
     }
 
-    private int calcularCelAlt() {
-        return (int) ((int) (this.tablero.length ^ 2) * (0.01 * this.porcentajeCel));
+    public int calcularCelAlt() {
+        return (int) ((int) (this.tablero.length * this.tablero.length) * (0.01 * this.porcentajeCel));
 
     }
 
