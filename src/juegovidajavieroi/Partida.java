@@ -13,8 +13,8 @@ public class Partida {
     
     private Tablero tabl;
 
-    public Partida(Tablero tabl) {
-        this.tabl = tabl;
+    public Partida(int dimension, int porcen) {
+        this.tabl = new Tablero(dimension,porcen);
     }
 
     public Tablero getTabl() {
