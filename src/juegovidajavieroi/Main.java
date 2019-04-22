@@ -18,7 +18,17 @@ public class Main {
         
         Partida p1 = new Partida(Vista.elegirTablero(), Vista.elegirPorcentajeCel());
         
+        p1.tipoGeneracion(Vista.elegirManualAlt());
         
+        boolean seguir = true;
+        
+        do {
+            
+            p1.muestraGeneracion(); 
+            
+           seguir = p1.crearGeneracion(Vista.elegirContinuar());
+           
+        } while (seguir);
         
         
         
