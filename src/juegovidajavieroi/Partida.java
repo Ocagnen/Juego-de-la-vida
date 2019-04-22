@@ -10,11 +10,20 @@ package juegovidajavieroi;
  * @author javier
  */
 public class Partida {
-    
+
     private Tablero tabl;
 
     public Partida(int dimension, int porcen) {
-        this.tabl = new Tablero(dimension,porcen);
+        this.tabl = new Tablero(dimension, porcen);
+    }
+
+    public void tipoGeneracion(int opcion) {
+        if (opcion == 1) {
+            this.tabl.asignarCelManual();
+        } else {
+            this.tabl.asignarCelManual();
+        }
+
     }
 
     public Tablero getTabl() {
@@ -24,12 +33,5 @@ public class Partida {
     public void setTabl(Tablero tabl) {
         this.tabl = tabl;
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
 }
