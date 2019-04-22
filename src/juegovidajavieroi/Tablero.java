@@ -16,6 +16,7 @@ public class Tablero {
 
     private Celula[][] tablero;
     private int porcentajeCel;
+    private int numGeneracion;
 
     public Tablero(int dimensiones, int numeroCel) {
         this.tablero = new Celula[dimensiones][dimensiones];
@@ -27,6 +28,7 @@ public class Tablero {
         }
 
         this.porcentajeCel = numeroCel;
+        this.numGeneracion = 0;
     }
 
     public Celula[][] getTablero() {
@@ -150,6 +152,7 @@ public class Tablero {
         }
 
         matarRevivirCel();
+        this.numGeneracion = this.numGeneracion + 1;
 
     }
 
