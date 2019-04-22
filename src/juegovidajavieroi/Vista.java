@@ -15,7 +15,7 @@ public class Vista {
 
     public static Scanner tec = new Scanner(System.in);
 
-    public static Comando mostrarMenu() {
+    public static int mostrarMenu() {
 
         int respuesta;
 
@@ -31,34 +31,50 @@ public class Vista {
 
         } while (respuesta > 2 || respuesta < 1);
 
+        return respuesta;
+
     }
-    
-    public static int elegirTablero(){
-        
+
+    public static int elegirTablero() {
+
         System.out.println("¿Qué dimensiones desea darle al tablero? (N x N)");
         int respuesta = tec.nextInt();
-        while(respuesta>25 || respuesta <5){
+        while (respuesta > 25 || respuesta < 5) {
             System.out.println("Tamaño no admitido");
             System.out.println("Introducir un número entre 25 y 5");
             respuesta = tec.nextInt();
         }
-        
+
         return respuesta;
     }
-    
-    public static int elegirPorcentajeCel(){
+
+    public static int elegirPorcentajeCel() {
         System.out.println("Introduce el porcentaje de células para la "
                 + "generación 1");
         System.out.println("El porcentaje se debe introducir en forma de "
                 + "número entero entre 100 y 0 (ej: 20, 14, 67,...)");
-       int respuesta = tec.nextInt();
-       while(respuesta>100 || respuesta <0){
+        int respuesta = tec.nextInt();
+        while (respuesta > 100 || respuesta < 0) {
             System.out.println("Tamaño no admitido");
             System.out.println("Introducir un número entero entre 100 y 0");
             respuesta = tec.nextInt();
         }
-       
-       return respuesta;
+
+        return respuesta;
+    }
+
+    public static int elegirContinuar() {
+
+        int respuesta;
+        do {
+            System.out.println("¿Quieres continuar la partida?");
+            System.out.println("1. Siguiente generación");
+            System.out.println("2. Finalizar partida");
+            respuesta = tec.nextInt();
+
+        } while (respuesta > 2 || respuesta < 1);
+
+        return respuesta;
     }
 
 }
