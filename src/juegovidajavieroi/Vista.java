@@ -77,7 +77,7 @@ public class Vista {
         return respuesta;
     }
     
-    public int elegirManualAlt(){
+    public static int elegirManualAlt(){
         
         int respuesta;
         
