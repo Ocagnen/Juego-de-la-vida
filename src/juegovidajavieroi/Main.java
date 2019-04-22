@@ -11,17 +11,16 @@ package juegovidajavieroi;
  */
 public class Main {
 
-    public static void main(String[] args) {
-
-        Tablero tab = new Tablero(7, 20);
-
-        tab.asignarCelAlt();
-
-        tab.mostrarTablero();       
+    public static void main(String[] args) {    
         
-        tab.siguienteGeneracion();
+        System.out.println("EL JUEGO DE LA VIDA");
+        System.out.println("-----------------------------");       
         
-        tab.mostrarTablero();
+        Partida p1 = new Partida(Vista.elegirTablero(), Vista.elegirPorcentajeCel());
+        
+        
+        
+        
         
 
     }
