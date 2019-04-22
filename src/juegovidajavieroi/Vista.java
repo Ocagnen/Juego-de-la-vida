@@ -76,5 +76,19 @@ public class Vista {
 
         return respuesta;
     }
+    
+    public int elegirManualAlt(){
+        
+        int respuesta;
+        
+        do{
+        System.out.println("1. Asignar células de forma manual");
+        System.out.println("2. Asignar células de forma aleatoria");
+        respuesta = tec.nextInt();
+        } while (respuesta>2 || respuesta<1);
+        
+        return respuesta;
+        
+    }
 
 }
