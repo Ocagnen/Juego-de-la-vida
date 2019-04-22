@@ -12,6 +12,24 @@ package juegovidajavieroi;
 public class Partida {
     
     private Tablero tabl;
+
+    public Partida(Tablero tabl) {
+        this.tabl = tabl;
+    }
+
+    public Tablero getTabl() {
+        return tabl;
+    }
+
+    public void setTabl(Tablero tabl) {
+        this.tabl = tabl;
+    }
+    
+    
+    
+    
+    
+    
     
     
 }
