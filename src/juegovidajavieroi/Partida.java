@@ -25,6 +25,20 @@ public class Partida {
         }
 
     }
+    
+    public void muestraGeneracion(){
+        System.out.println("GENERACIÓN "+this.tabl.getNumGeneracion());
+        this.tabl.mostrarTablero();
+    }
+    
+    public boolean crearGeneracion(int i){       
+        if(i ==1){
+            muestraGeneracion();
+            this.tabl.siguienteGeneracion();             
+            return true;
+        }        
+        return false;
+    }
 
     public Tablero getTabl() {
         return tabl;
