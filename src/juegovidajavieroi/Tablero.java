@@ -47,6 +47,14 @@ public class Tablero {
         this.porcentajeCel = porcentajeCel;
     }
 
+    public int getNumGeneracion() {
+        return numGeneracion;
+    }
+
+    public void setNumGeneracion(int numGeneracion) {
+        this.numGeneracion = numGeneracion;
+    }
+
     public void mostrarTablero() {
 
         System.out.println("-------------------------------------------");
