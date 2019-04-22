@@ -21,7 +21,7 @@ public class Partida {
         if (opcion == 1) {
             this.tabl.asignarCelManual();
         } else {
-            this.tabl.asignarCelManual();
+            this.tabl.asignarCelAlt();
         }
 
     }
@@ -29,6 +29,7 @@ public class Partida {
     public void muestraGeneracion(){
         System.out.println("GENERACIÓN "+this.tabl.getNumGeneracion());
         this.tabl.mostrarTablero();
+        System.out.println("");
     }
     
     public boolean crearGeneracion(int i){       
