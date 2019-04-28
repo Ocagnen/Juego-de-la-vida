@@ -11,27 +11,33 @@ package juegovidajavieroi;
  */
 public class Main {
 
-    public static void main(String[] args) {    
-        
+    public static void main(String[] args) {
+
         System.out.println("EL JUEGO DE LA VIDA");
-        System.out.println("-----------------------------");       
-        
+        System.out.println("-----------------------------");
+
         Partida p1 = new Partida(Vista.elegirTablero(), Vista.elegirPorcentajeCel());
-        
+
         p1.tipoGeneracion(Vista.elegirManualAlt());
-        
+
         boolean seguir = true;
-        
+        Tablero tAux;
+
         do {
+
+            p1.muestraGeneracion();
+
+            tAux = p1.getTabl().copiarTab();
+
+            seguir = p1.crearGeneracion(Vista.elegirContinuar());
+
+            p1.comprobarRep(tAux);
             
-            p1.muestraGeneracion(); 
-            
-           seguir = p1.crearGeneracion(Vista.elegirContinuar());
-           
-        } while (seguir);
-        
-        
-        
+            if(p1.getNumeroRep()==3){
+                p1.muestraGeneracion();
+            }
+
+        } while (seguir && (p1.getNumeroRep() != 3));
 
     }
 
