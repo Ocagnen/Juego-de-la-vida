@@ -45,10 +45,6 @@ public class Partida {
         return false;
     }
 
-    public boolean pararGeneracion() {
-
-    }
-
     public void muestraGeneracion() {
         System.out.println("GENERACIÓN " + this.tabl.getNumGeneracion());
         this.tabl.mostrarTablero();
