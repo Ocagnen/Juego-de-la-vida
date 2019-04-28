@@ -31,6 +31,23 @@ public class Tablero {
         this.numGeneracion = 0;
     }
 
+    public boolean generacionIgual(Celula[][] cel){
+        
+        for (int i = 0; i < cel.length; i++) {
+            for (int j = 0; j < cel.length; j++) {
+                
+                if(this.tablero[i][j]!=cel[i][j]){
+                    return false;
+                }
+                
+            }
+            
+        }
+        
+        return true;
+        
+    }
+    
     public Celula[][] getTablero() {
         return tablero;
     }
