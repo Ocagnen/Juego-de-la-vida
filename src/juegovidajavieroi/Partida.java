@@ -36,12 +36,12 @@ public class Partida {
     }
 
     public boolean comprobarRep(Tablero siguiente) {
-
+        
         if (this.tabl.generacionIgual(siguiente.getTablero())) {
             this.numeroRep++;
             return true;
         }
-
+        this.numeroRep =0;
         return false;
     }
 
