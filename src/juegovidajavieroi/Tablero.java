@@ -5,6 +5,7 @@
  */
 package juegovidajavieroi;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -29,6 +30,20 @@ public class Tablero {
 
         this.porcentajeCel = numeroCel;
         this.numGeneracion = 0;
+    }
+    
+    public Tablero copiarTab(){
+        
+        Tablero aux = new Tablero(this.getTablero().length, this.porcentajeCel);
+        
+        
+        
+        for (int i = 0; i < this.tablero.length; i++) {            
+                aux.tablero[i] = Arrays.copyOf(this.tablero[i], this.tablero.length);            
+        }
+        
+        return aux;
+        
     }
 
     public boolean generacionIgual(Celula[][] cel){
