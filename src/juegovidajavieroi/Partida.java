@@ -12,6 +12,15 @@ package juegovidajavieroi;
 public class Partida {
 
     private Tablero tabl;
+    private int numeroRep;
+
+    public int getNumeroRep() {
+        return numeroRep;
+    }
+
+    public void setNumeroRep(int numeroRep) {
+        this.numeroRep = numeroRep;
+    }
 
     public Partida(int dimension, int porcen) {
         this.tabl = new Tablero(dimension, porcen);
@@ -25,19 +34,33 @@ public class Partida {
         }
 
     }
-    
-    public void muestraGeneracion(){
-        System.out.println("GENERACIÓN "+this.tabl.getNumGeneracion());
+
+    public boolean comprobarRep(Tablero siguiente) {
+
+        if (this.tabl.generacionIgual(siguiente.getTablero())) {
+            this.numeroRep++;
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean pararGeneracion() {
+
+    }
+
+    public void muestraGeneracion() {
+        System.out.println("GENERACIÓN " + this.tabl.getNumGeneracion());
         this.tabl.mostrarTablero();
         System.out.println("");
     }
-    
-    public boolean crearGeneracion(int i){       
-        if(i ==1){
+
+    public boolean crearGeneracion(int i) {
+        if (i == 1) {
             muestraGeneracion();
-            this.tabl.siguienteGeneracion();             
+            this.tabl.siguienteGeneracion();
             return true;
-        }        
+        }
         return false;
     }
 
