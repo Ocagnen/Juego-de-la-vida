@@ -31,38 +31,43 @@ public class Tablero {
         this.porcentajeCel = numeroCel;
         this.numGeneracion = 0;
     }
-    
-    public Tablero copiarTab(){
-        
+
+    public Tablero copiarTab() {
+
         Tablero aux = new Tablero(this.getTablero().length, this.porcentajeCel);
-        
-        
-        
-        for (int i = 0; i < this.tablero.length; i++) {            
-                aux.tablero[i] = Arrays.copyOf(this.tablero[i], this.tablero.length);            
+
+        for (int i = 0; i < this.tablero.length; i++) {
+            for (int j = 0; j < this.tablero.length; j++) {                
+                if (this.tablero[i][j].isEstado()){
+                aux.tablero[i][j].setEstado(true);
+                } else {
+                    aux.tablero[i][j].setEstado(false);
+                }
+            }
+
         }
-        
+
         return aux;
-        
+
     }
 
-    public boolean generacionIgual(Celula[][] cel){
-        
+    public boolean generacionIgual(Celula[][] cel) {
+
         for (int i = 0; i < cel.length; i++) {
             for (int j = 0; j < cel.length; j++) {
-                
-                if(this.tablero[i][j]!=cel[i][j]){
+
+                if (this.tablero[i][j].isEstado() != cel[i][j].isEstado()) {
                     return false;
                 }
-                
+
             }
-            
+
         }
-        
+
         return true;
-        
+
     }
-    
+
     public Celula[][] getTablero() {
         return tablero;
     }
