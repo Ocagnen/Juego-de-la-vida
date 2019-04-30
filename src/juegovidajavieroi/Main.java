@@ -20,24 +20,26 @@ public class Main {
 
         p1.tipoGeneracion(Vista.elegirManualAlt());
 
-        boolean seguir = true;
+        boolean seguir;
         Tablero tAux;
+        
 
         do {
-
-            p1.muestraGeneracion();
+            p1.muestraGeneracion();           
 
             tAux = p1.getTabl().copiarTab();
 
             seguir = p1.crearGeneracion(Vista.elegirContinuar());
 
             p1.comprobarRep(tAux);
+            p1.comprobarRepInter(tAux);
             
-            if(p1.getNumeroRep()==3){
+            if((p1.getNumeroRep()==3) || p1.getNumeroRepInter()==2){
                 p1.muestraGeneracion();
             }
 
-        } while (seguir && (p1.getNumeroRep() != 3));
+        } while (seguir && (p1.getNumeroRep() != 3)&& 
+                (p1.getNumeroRepInter() != 2));
 
     }
 
