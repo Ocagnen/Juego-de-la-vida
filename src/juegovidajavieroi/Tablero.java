@@ -37,9 +37,9 @@ public class Tablero {
         Tablero aux = new Tablero(this.getTablero().length, this.porcentajeCel);
 
         for (int i = 0; i < this.tablero.length; i++) {
-            for (int j = 0; j < this.tablero.length; j++) {                
-                if (this.tablero[i][j].isEstado()){
-                aux.tablero[i][j].setEstado(true);
+            for (int j = 0; j < this.tablero.length; j++) {
+                if (this.tablero[i][j].isEstado()) {
+                    aux.tablero[i][j].setEstado(true);
                 } else {
                     aux.tablero[i][j].setEstado(false);
                 }
@@ -125,7 +125,7 @@ public class Tablero {
             do {
                 System.out.println("Introduce la fila donde insertar la célula: ");
                 fila = tec.nextInt() - 1;
-                while (fila > this.tablero.length || fila < this.tablero.length) {
+                while (fila > this.tablero.length || fila < 0) {
                     System.out.println("La fila introducida no existe");
                     System.out.println("Introduce la fila donde insertar la célula: ");
                     fila = tec.nextInt() - 1;
@@ -133,7 +133,7 @@ public class Tablero {
 
                 System.out.println("Introduce la columna donde insertar la célula");
                 columna = tec.nextInt() - 1;
-                while (fila > this.tablero.length || fila < this.tablero.length) {
+                while (fila > this.tablero.length || fila < 0) {
                     System.out.println("La columna introducida no existe");
                     System.out.println("Introduce la columna donde insertar la célula: ");
                     fila = tec.nextInt() - 1;
@@ -158,8 +158,11 @@ public class Tablero {
                 fila = alt.nextInt(this.tablero.length);
                 columna = alt.nextInt(this.tablero.length);
             } while (this.tablero[fila][columna].isEstado());
-            this.tablero[fila][columna].setEstado(true);
-            veces++;
+
+            if (numCel != 0) {
+                this.tablero[fila][columna].setEstado(true);
+                veces++;
+            }
 
         } while (veces != numCel);
 
