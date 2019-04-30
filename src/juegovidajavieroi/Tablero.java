@@ -125,7 +125,7 @@ public class Tablero {
             do {
                 System.out.println("Introduce la fila donde insertar la célula: ");
                 fila = tec.nextInt() - 1;
-                while (fila > this.tablero.length || fila < 0) {
+                while (fila > this.tablero.length-1 || fila < 0) {
                     System.out.println("La fila introducida no existe");
                     System.out.println("Introduce la fila donde insertar la célula: ");
                     fila = tec.nextInt() - 1;
@@ -133,10 +133,10 @@ public class Tablero {
 
                 System.out.println("Introduce la columna donde insertar la célula");
                 columna = tec.nextInt() - 1;
-                while (fila > this.tablero.length || fila < 0) {
+                while (columna > this.tablero.length-1 || columna < 0) {
                     System.out.println("La columna introducida no existe");
                     System.out.println("Introduce la columna donde insertar la célula: ");
-                    fila = tec.nextInt() - 1;
+                    columna = tec.nextInt() - 1;
                 }
             } while (this.tablero[fila][columna].isEstado());
             this.tablero[fila][columna].setEstado(true);
