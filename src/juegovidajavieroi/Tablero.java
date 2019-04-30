@@ -14,10 +14,12 @@ import java.util.Scanner;
  */
 public class Tablero {
 
-    private Celula[][] tablero;
-    private int porcentajeCel;
-    private int numGeneracion;
+    private Celula[][] tablero; // Matriz de clase Célula que hace función de tablero
+    private int porcentajeCel; // % de células que habrá vivas en la 1ª gen 
+    private int numGeneracion; // Nº de la generación de células
 
+    // Constructor al que se le pasan las dimensiones (X * X) y el porcentaje
+    // de células vivas en la 1ª gen (generación 0)
     public Tablero(int dimensiones, int numeroCel) {
         this.tablero = new Celula[dimensiones][dimensiones];
 
@@ -31,6 +33,7 @@ public class Tablero {
         this.numGeneracion = 0;
     }
 
+    // Método para copiar tablero
     public Tablero copiarTab() {
 
         Tablero aux = new Tablero(this.getTablero().length, this.porcentajeCel);
@@ -50,6 +53,8 @@ public class Tablero {
 
     }
 
+    // Método que determina si una generación es igual a la otra. Compara 
+    // dos matrices para ver si los valores de ambas son identicos
     public boolean generacionIgual(Celula[][] cel) {
 
         for (int i = 0; i < cel.length; i++) {
@@ -67,6 +72,7 @@ public class Tablero {
 
     }
 
+    // Getters y setters 
     public Celula[][] getTablero() {
         return tablero;
     }
@@ -91,6 +97,8 @@ public class Tablero {
         this.numGeneracion = numGeneracion;
     }
 
+    // Método para mostrar el tablero ( X si una célula está viva, un espacio 
+    // vacío si está muerta)
     public void mostrarTablero() {
 
         System.out.println("-------------------------------------------");
@@ -112,7 +120,9 @@ public class Tablero {
         } while (veces != this.tablero.length);
 
     }
-
+    
+    // Método para asignar celulas de forma manual. Primero indicaremos la
+    // columna y luego la fila donde ubicar la célula viva.
     public void asignarCelManual() {
         Scanner tec = new Scanner(System.in);
         int fila;
@@ -143,7 +153,9 @@ public class Tablero {
         } while (veces != numCel);
 
     }
-
+    
+    // Método para que en la primera generación las células vivas estén en
+    // posiciones aleatorias de la matriz
     public void asignarCelAlt() {
 
         Random alt = new Random();
@@ -167,11 +179,14 @@ public class Tablero {
 
     }
 
+    // Método para determinar el número de células vivas que habrá en función 
+    // del tamaño y el procentaje de la matriz.
     private int calcularCelAlt() {
         return (int) ((int) (this.tablero.length * this.tablero.length) * (0.01 * this.porcentajeCel));
 
     }
 
+    // Método para generar siguiente generación de células
     public void siguienteGeneracion() {
 
         int celulasVecinas;
@@ -203,6 +218,8 @@ public class Tablero {
 
     }
 
+    // Método para determinar las células adyacentes a una célula que 
+    // se encuentre en la fila superior
     private int celFilaSup(int fila, int columna) {
         int celulasVecinas = 0;
 
@@ -225,6 +242,8 @@ public class Tablero {
         return celulasVecinas;
     }
 
+    // Método para determinar las células adyacentes a una célula que 
+    // se encuentre en la fila inferior
     private int celFilaInf(int fila, int columna) {
         int celulasVecinas = 0;
 
@@ -248,6 +267,8 @@ public class Tablero {
 
     }
 
+    // Método para determinar las células adyacentes a una célula que 
+    // se encuentre en la columna izquierda
     private int celColIzq(int fila, int columna) {
         int celulasVecinas = 0;
 
@@ -271,6 +292,8 @@ public class Tablero {
 
     }
 
+    // Método para determinar las células adyacentes a una célula que 
+    // se encuentre en la columna derecha
     private int celColDer(int fila, int columna) {
         int celulasVecinas = 0;
 
@@ -294,6 +317,8 @@ public class Tablero {
 
     }
 
+    // Método para determinar las células adyacentes a una célula que no 
+    // se encuentre en el borde de la matriz
     private int celEstandar(int fila, int columna) {
         int celulasVecinas = 0;
 
@@ -326,8 +351,10 @@ public class Tablero {
 
     }
 
+    // Método para determinar el estado de una célula (viva/muerta) en
+    // función de la cantidad de celulas adyacentes que tenga
     private boolean determinarEstadoCel(int celulasCerca, Celula cel) {
-        boolean celula = false;
+        boolean celula;
 
         switch (celulasCerca) {
             case 0:
@@ -347,10 +374,10 @@ public class Tablero {
         return celula;
     }
 
+    // Método para matar o revivir células de la matriz 
     private void matarRevivirCel() {
         for (int i = 0; i < this.tablero.length; i++) {
             for (int j = 0; j < this.tablero.length; j++) {
-
                 this.tablero[i][j].setEstado(determinarEstadoCel(this.tablero[i][j].getCelulasAdy(),
                         this.tablero[i][j]));
 
@@ -359,6 +386,7 @@ public class Tablero {
         }
     }
 
+    // Método toString
     @Override
     public String toString() {
         return "Tablero{" + "tablero=" + tablero + ", porcentajeCel=" + porcentajeCel + '}';

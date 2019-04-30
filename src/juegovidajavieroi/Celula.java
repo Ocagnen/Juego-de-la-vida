@@ -11,19 +11,22 @@ package juegovidajavieroi;
  */
 public class Celula {
     
-    private boolean estado;
-    private int celulasAdy;
+    private boolean estado; // Determina si está viva o muerta
+    private int celulasAdy; // Células adyacentes en la matriz
 
+    // Constructor parametrizado
     public Celula(boolean estado, int celulasAdy) {
         this.estado = estado;
         this.celulasAdy = celulasAdy;
     }
     
+    //Constructor por defecto
     public Celula(){
         this.estado = false;
         this.celulasAdy = 0;
     }
 
+    //Getters y setters
     public boolean isEstado() {
         return estado;
     }
@@ -40,6 +43,7 @@ public class Celula {
         this.celulasAdy = celulasAdy;
     }
 
+    // ToString
     @Override
     public String toString() {
         return "Celula{" + "estado=" + estado + ", celulasAdy=" + celulasAdy + '}';

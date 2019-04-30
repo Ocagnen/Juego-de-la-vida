@@ -13,28 +13,10 @@ import java.util.Scanner;
  */
 public class Vista {
 
+    // Atributo Scanner para recibir información por teclado
     public static Scanner tec = new Scanner(System.in);
 
-    public static int mostrarMenu() {
-
-        int respuesta;
-
-        System.out.println("JUEGO DE LA VIDA");
-
-        do {
-
-            System.out.println("----------------------------");
-            System.out.println("¿Qué deseas hacer?");
-            System.out.println("1.Partida nueva");
-            System.out.println("2.Cargar partida");
-            respuesta = tec.nextInt();
-
-        } while (respuesta > 2 || respuesta < 1);
-
-        return respuesta;
-
-    }
-
+    // Método para pedir a usuario las dimensiones del tablero
     public static int elegirTablero() {
 
         System.out.println("¿Qué dimensiones desea darle al tablero? (N x N)");
@@ -48,6 +30,7 @@ public class Vista {
         return respuesta;
     }
 
+    // Método para pedir a usuario el procentaje de células del tablero
     public static int elegirPorcentajeCel() {
         System.out.println("Introduce el porcentaje de células para la "
                 + "generación 1");
@@ -63,6 +46,8 @@ public class Vista {
         return respuesta;
     }
 
+    // Método para que el usuario elija si generar otra generación de 
+    // células o finalizar la partida
     public static int elegirContinuar() {
 
         int respuesta;
@@ -77,6 +62,8 @@ public class Vista {
         return respuesta;
     }
     
+    // Método para que usuario determine si las células se colocarán 
+    // aleatoriamente o de forma manual
     public static int elegirManualAlt(){
         
         int respuesta;
